@@ -1,5 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, Image , ScrollView} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import AppLoading from 'expo-app-loading';
 import colours from './colours';
 import myData from './components/FakeData';
@@ -17,6 +20,10 @@ import ToyProductCard from './components/product/ToyProductCard';
 import AllProducts from './components/screens/AllProducts';
 import Accordian from './components/smallElements/Accordian';
 import CartCard from './components/cart/CartCard';
+import CartPage from './components/screens/CartPage';
+import Welcome from './components/screens/Welcome';
+import BrowsingCard from './components/welcomePg/BrowsingCard';
+import WelcomeImage from './components/welcomePg/WelcomeImage';
 
 // Font Imports
 import { useFonts, AnticDidone_400Regular } from '@expo-google-fonts/antic-didone';
@@ -32,6 +39,9 @@ import {
 import MyH1 from './components/text/MyH1';
 import NavigationBar from './components/navigation/NavigationBar';
 import IndividualProduct from './components/screens/IndividualProduct';
+
+const Stack = createNativeStackNavigator();
+
 
 export default function App() {
   //Uses Fonts
@@ -52,11 +62,13 @@ export default function App() {
 
 
   return (
-    <ScrollView >
-      <Screen>
-        <CartCard image={myData[0].image} name={myData[0].name} ID={myData[0].id} quant={1} />
-      </Screen>
-    </ScrollView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Welcome}/>
+        <Stack.Screen name="AllProducts" component={AllProducts}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
 
@@ -69,3 +81,14 @@ const styles = StyleSheet.create({
     fontFamily: 'AnticDidone_400Regular',
   },
 });
+
+
+
+{/* <CartCard image={myData[0].image} name={myData[0].name} ID={myData[0].id} quant={1} /> */}
+
+
+{/* <ScrollView>
+<ScrollView horizontal={true}>
+    <Welcome />
+</ScrollView>
+</ScrollView> */}
