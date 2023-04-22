@@ -7,7 +7,7 @@ const ToyProductCard = ({onPress, image, title, price, shortDescription}) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.container, 
-    {width: Dimensions.get('window').width * 0.48,
+    {width: Dimensions.get('window').width * 0.46,
     height: Dimensions.get('window').height * 0.4}]} >
         <ImageBackground style={styles.image} source={image} resizeMode="cover" accessibilityLabel={title}>        
           <View style={styles.header}>
