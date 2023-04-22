@@ -15,6 +15,8 @@ import MyAppText from './components/text/MyAppText';
 import Screen from './components/smallElements/Screen';
 import ToyProductCard from './components/product/ToyProductCard';
 import AllProducts from './components/screens/AllProducts';
+import Accordian from './components/smallElements/Accordian';
+import CartCard from './components/cart/CartCard';
 
 // Font Imports
 import { useFonts, AnticDidone_400Regular } from '@expo-google-fonts/antic-didone';
@@ -28,6 +30,8 @@ import {
   Manrope_800ExtraBold,
 } from '@expo-google-fonts/manrope';
 import MyH1 from './components/text/MyH1';
+import NavigationBar from './components/navigation/NavigationBar';
+import IndividualProduct from './components/screens/IndividualProduct';
 
 export default function App() {
   //Uses Fonts
@@ -48,9 +52,9 @@ export default function App() {
 
 
   return (
-    <ScrollView>
+    <ScrollView >
       <Screen>
-        <AllProducts/>
+        <CartCard image={myData[0].image} name={myData[0].name} ID={myData[0].id} quant={1} />
       </Screen>
     </ScrollView>
   );

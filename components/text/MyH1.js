@@ -5,7 +5,7 @@ import colours from '../../colours'
 
 const MyH1 = (props) => {
   return (
-    <Text style={[styles.h1, {color: props.colour}]}>{props.children}</Text>
+    <Text adjustsFontSizeToFit minimumFontScale={.2} style={[styles.h1, {color: props.colour}]}>{props.children}</Text>
   )
 }
 
@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     h1: {
       fontFamily: 'AnticDidone_400Regular',
       fontSize: 60,
+      textAlign: 'center'
     }
     }
     );

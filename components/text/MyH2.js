@@ -5,7 +5,7 @@ import colours from '../../colours'
 
 const MyH2 = (props) => {
   return (
-    <Text style={[styles.h2, {color: props.colour}]}>{props.children}</Text>
+    <Text style={[styles.h2, {color: props.colour}]} adjustsFontSizeToFit minimumFontScale={.2} >{props.children}</Text>
   )
 }
 
