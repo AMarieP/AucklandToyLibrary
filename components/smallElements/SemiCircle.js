@@ -15,7 +15,7 @@ const SemiCircle = props => {
         justifyContent: 'flex-end',
         alignItems: 'center'
       }]}>
-        <MyH1 colour={props.colour}>{props.children}</MyH1>
+        <View style={styles.text} ><MyH1 colour={props.colour}>{props.children}</MyH1></View>
     </View>
   )
 }
@@ -23,5 +23,8 @@ const SemiCircle = props => {
 export default SemiCircle
 
 const styles = StyleSheet.create({
+  text:{
+    marginBottom: 10,
+  }
 
 })
