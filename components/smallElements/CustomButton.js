@@ -5,7 +5,7 @@ const CustomButton = props => {
   return (
     <Button
     style={styles.button}
-    title={props.name}
+    title='Button'
     onPress={() => Alert.alert('Button with adjusted color pressed')}/>
   )
 }
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9795B',
     color: '#F1DD40',
     elevation: 2,
-    width: '500px'
+    width: '600'
   }
     
 })

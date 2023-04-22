@@ -13,6 +13,7 @@ const Circle = props => {
         alignItems: 'center'
       }}
       underlayColor = '#ccc'>
+        {props.children}
     </View>
   )
 }
