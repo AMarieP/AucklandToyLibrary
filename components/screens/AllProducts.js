@@ -1,20 +1,60 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native'
 import React from 'react'
 import myData from '../FakeData'
+import MyH1 from '../text/MyH1'
+import MyH2 from '../text/MyH2'
 import ToyProductCard from '../product/ToyProductCard'
 import SemiCircle from '../smallElements/SemiCircle'
+import colours from '../../colours'
+import Screen from '../smallElements/Screen'
+
 
 const AllProducts = () => {
   return (
-    <View>
-      <SemiCircle>shop</SemiCircle>
-      <View>
-        {myData.map((datas, i) => <ToyProductCard key={myData[i].id} image={myData[i].image} title={myData[i].name} price={myData[i].price} shortDescription={myData[i].shortDescription}></ToyProductCard>)}
+    <Screen>
+      <SemiCircle colour={colours.brick} backgroundColour={colours.blue}>shop</SemiCircle>
+      <View style={styles.sortContainer} >
+        <MyH2 colour={colours.brick}>sort by:</MyH2>
+        <TouchableOpacity style={styles.sortOptions}>
+          <MyH2 colour={colours.brick}>all</MyH2>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sortOptions}>
+          <MyH2 colour={colours.brick}>$5</MyH2>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sortOptions}>
+          <MyH2 colour={colours.brick}>$10</MyH2>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sortOptions}>
+          <MyH2 colour={colours.brick}>$35</MyH2>
+        </TouchableOpacity>
+
       </View>
-    </View>
+      <SafeAreaView>
+        <FlatList
+        style={{margin: 2}}
+          numColumns={2}
+          data={myData}
+          renderItem={({item}) => <ToyProductCard title={item.name} image={item.image} price={item.price} shortDescription={item.shortDescription} />}
+          keyExtractor={item => item.id}/>
+      </SafeAreaView>
+    </Screen>
   )
 }
 
 export default AllProducts
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  sortContainer:{
+    flexDirection: 'row',
+    backgroundColor: colours.green,
+    width: '100%',
+    justifyContent: 'center',
+    paddingTop: '2%',
+    paddingBottom: '2%',
+  },
+  sortOptions:{
+    paddingLeft: '2%',
+    paddingRight: '2%',
+  }
+
+})
