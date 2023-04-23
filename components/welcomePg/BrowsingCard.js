@@ -2,7 +2,7 @@ import * as React from "react"
 import Svg, { G, Rect, Path, Ellipse, Defs } from "react-native-svg"
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 const BrowsingCard = (props) => (
-  <Svg xmlns="http://www.w3.org/2000/svg" fill="none" {...props}>
+  <Svg xmlns="http://www.w3.org/2000/svg" fill="none" width={props.width} height={props.height} viewBox='0 0 500 600'>
     <G filter="url(#a)">
       <Rect
         width={414.356}

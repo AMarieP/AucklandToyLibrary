@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import AppLoading from 'expo-app-loading';
+import MyBrowsingCard from './components/welcomePg/MyBrowsingCard';
 
 
 //Page Imports

@@ -1,8 +1,14 @@
 import * as React from "react"
 import Svg, { Path, Circle, Defs, LinearGradient, Stop } from "react-native-svg"
+import { Dimensions } from "react-native"
 
-const ToyPileInfographic = (props) => (
-  <Svg xmlns="http://www.w3.org/2000/svg" fill="none" {...props}>
+
+const ToyPileInfographic = ({ height}) => {
+  
+  window = Dimensions.get('window').width
+
+  return(
+    <Svg xmlns="http://www.w3.org/2000/svg" width={window} height={height} viewBox="0 0 369 181" fill="none">
     <Path
       fill="#E9795B"
       fillRule="evenodd"
@@ -56,5 +62,6 @@ const ToyPileInfographic = (props) => (
       </LinearGradient>
     </Defs>
   </Svg>
-)
+  )
+}
 export default ToyPileInfographic

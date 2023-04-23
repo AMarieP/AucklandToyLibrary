@@ -5,7 +5,7 @@ import { Dimensions } from "react-native"
 const WelcomeImage = ({backgroundColor, width, height}) => {
   window = Dimensions.get('window').width
   return(
-    <Svg style={{backgroundColor: backgroundColor, marginBottom: 100}} width={window} height={height} viewBox="0 0 362 181" fill="none" >
+    <Svg style={{backgroundColor: backgroundColor, marginBottom: 100}} width={window} height={height} viewBox="0 0 369 181" fill="none" >
     <Path
       fill="#E9795B"
       fillRule="evenodd"

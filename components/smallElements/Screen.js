@@ -6,8 +6,8 @@ import Footer from "../navigation/Footer";
 
 function Screen({ children, style }) {
   return (
-    <ScrollView>
-      <ScrollView horizontal={true}>
+    <ScrollView nestedScrollEnabled={true}>
+      <ScrollView horizontal={true} nestedScrollEnabled={true}>
         <SafeAreaView style={[styles.screen, {width: Dimensions.get('window').width,}]}>
           {children}
           <Footer />

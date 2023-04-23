@@ -6,8 +6,8 @@ const Circle = props => {
     <View
     style = {{
         borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-        width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').width * 0.7,
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').width * 0.9,
         backgroundColor: props.colour,
         justifyContent: 'center',
         alignItems: 'center'

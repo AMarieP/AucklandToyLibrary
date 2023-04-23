@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native'
 import React from 'react'
 import colours from '../../colours'
 import Screen from '../smallElements/Screen'
@@ -6,39 +6,96 @@ import Screen from '../smallElements/Screen'
 import WelcomeImage from '../welcomePg/WelcomeImage'
 import SmallBrickShapes from '../welcomePg/SmallBrickShapes'
 import ToyPileInfographic from '../welcomePg/ToyPileInfographic'
-import BrowsingCard from '../welcomePg/BrowsingCard'
+import MyBrowsingCard from '../welcomePg/MyBrowsingCard'
 import Circle from '../smallElements/Circle'
 import SemiCircle from '../smallElements/SemiCircle'
 import myData from '../FakeData'
 import ToyProductCard from '../product/ToyProductCard'
+import MyH2 from '../text/MyH2'
+import { Icon, Button } from '@rneui/themed'
+import MyAppText from '../text/MyAppText'
+import MyH1 from '../text/MyH1'
+
+
+
 
 
 const Welcome = () => {
+
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'Under $5',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: '$10 and Under',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: '$35 and Under',
+    },
+  ];
+
+  const hello = 'heello'
+
   return (
     <Screen style={{width: '100%'}}>
       <View style={styles.welcome} >
-        <Text>Hi</Text>
-        <WelcomeImage height={500} />
+        <View style={{width:'100%'}}>
+        <WelcomeImage height={500} width={'100%'} />
+        </View>
+        <Icon style={styles.arrow} name='arrow-down-sharp' type='ionicon' color={colours.cream} />
       </View>
       <View style={styles.aboutContainer}>
-        <Text>Kids love toys. But we all know toys can make a lot of clutter, and new toys are expensive. Auckland Toy Library seeks to help you and your kids reduce the clutter, cost and waste with second-hand toys at accessible prices.</Text>
-        <SmallBrickShapes />
+        <View style={{width: '80%'}} >
+        <MyH2 colour={colours.cream}>Kids love toys. But we all know toys can make a lot of clutter, and new toys are expensive. Auckland Toy Library seeks to help you and your kids reduce the clutter, cost and waste with second-hand toys at accessible prices.</MyH2>
+        </View>
+        <SmallBrickShapes style={{margin: '40%'}} />
       </View>
       <View style={styles.shopAllContainer} >
-        <Circle />
+        <Circle colour={colours.blue}>
+          <MyH2 colour={colours.brick} >PLAY SUSTAINABLY</MyH2>
+          <Button
+                  title="shop now"
+                  raised
+                  buttonStyle={{
+                    backgroundColor: colours.brick,
+                  }}
+                  containerStyle={{
+                    width: '40%',
+                    marginVertical: 2
+
+                  }}
+                  titleStyle={{ marginHorizontal: 10, color: colours.yellow, fontFamily: 'Manrope_400Regular', fontSize: 20 }}
+                />
+        </Circle>
       </View>
       <View style={styles.containerBrowseBy} >
-        <BrowsingCard />
+        <MyH1 colour={colours.brick} >BROWSE BY</MyH1>
+        <View style={{flex: 1, flexGrow: 3}}>
+        <FlatList
+        style={{marginHorizontal: 2}}
+          data={DATA}
+          renderItem={({item}) => <TouchableOpacity><MyBrowsingCard>{item.title}</MyBrowsingCard></TouchableOpacity>}
+          keyExtractor={item => item.id}/>
+        </View>
       </View>
       <View style={styles.containerDidYouKnow}>
-        <Text>Did You Know?</Text>
-        <ToyPileInfographic />
-        <Text>67% of your child’s toys sit neglected in your home.  Reduce your own clutter, buy second hand, and let your kids play in a way that is kind on our earth. </Text>
+        <View style={{flex: 1, marginTop: '30%', alignSelf: 'flex-start'}} >
+          <Text style={{fontFamily: 'AnticDidone_400Regular', fontSize: 30, color: colours.cream, backgroundColor: colours.brick, borderBottomRightRadius: 50, borderTopRightRadius: 50, paddingHorizontal: 10, paddingVertical: 10}} >Did You Know?</Text>
+        </View>
+        <View style={{flex: 2, marginTop: 0}} >
+          <ToyPileInfographic height={'100%'} />
+        </View>
+        <View style={{flex: 2, width: '80%'}} >
+          <MyAppText color={colours.darkest} >67% of your childs toys sit neglected in your home.  Reduce your own clutter, buy second hand, and let your kids play in a way that is kind on our earth. </MyAppText>
+        </View>
       </View>
       <View style={styles.containerNewIn} >
-        <SemiCircle>new in</SemiCircle>
+        <SemiCircle colour={colours.brick} backgroundColour={colours.blue} >new in</SemiCircle>
         <FlatList
-        style={{margin: 2}}
+        style={{marginHorizontal: 2, backgroundColor: colours.blue}}
           numColumns={2}
           data={myData}
           renderItem={({item}) => <ToyProductCard product={item} />}
@@ -53,46 +110,58 @@ export default Welcome
 const styles = StyleSheet.create({
   welcome:{
     flex: 1,
-    backgroundColor: 'blue',
+    backgroundColor: colours.green,
     width: '100%',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    padding: 0,
 
   },
-  aboutContainer:{
-    flex: 2,
-    width: '100%',
-    backgroundColor: 'pink',
+  arrow:{
+    padding: '10%',
+    marginRight: '10%'
+    
+  },
 
+  aboutContainer:{
+    flex: 1,
+    width: '100%',
+    backgroundColor: colours.green,
+    height: '900%',
+    paddingTop: '50%',
+    paddingBottom: '60%',
+    paddingLeft: 30 
 
 
   },
   shopAllContainer:{
     flex: 1,
     width: '100%',
-    backgroundColor: 'green',
-
-
+    height: '100%',
+    marginBottom: '80%',
+    marginTop: '-40%',
+    alignItems: 'center'
 
   },
   containerBrowseBy:{
     flex: 1,
+    flexGrow: 3,
     width: '100%',
-    backgroundColor:'red',
-
-
-
   },
+
   containerDidYouKnow:{
     flex: 1,
     width: '100%',
-    backgroundColor:'orange'
-
-
+    height: 600,
+    alignItems: 'center',
+    justifyContent: 'space-around',
 
   },
   containerNewIn:{
     flex: 2,
     width: '100%',
-    backgroundColor: 'purple'
+    alignItems: 'center',
+    marginTop: '10%'
 
 
 
