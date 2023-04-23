@@ -1,12 +1,11 @@
 import { StyleSheet, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native'
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import myData from '../FakeData'
 import MyH2 from '../text/MyH2'
 import ToyProductCard from '../product/ToyProductCard'
 import SemiCircle from '../smallElements/SemiCircle'
 import colours from '../../colours'
 import Screen from '../smallElements/Screen'
-
 
 const AllProducts = () => {
   return (
@@ -35,7 +34,7 @@ const AllProducts = () => {
         style={{margin: 2}}
           numColumns={2}
           data={myData}
-          renderItem={({item}) => <ToyProductCard title={item.name} image={item.image} price={item.price} shortDescription={item.shortDescription} />}
+          renderItem={({item}) => <ToyProductCard product={item} />}
           keyExtractor={item => item.id}/>
       </SafeAreaView>
     </Screen>

@@ -41,7 +41,7 @@ const Welcome = () => {
         style={{margin: 2}}
           numColumns={2}
           data={myData}
-          renderItem={({item}) => <ToyProductCard title={item.name} image={item.image} price={item.price} shortDescription={item.shortDescription} />}
+          renderItem={({item}) => <ToyProductCard product={item} />}
           keyExtractor={item => item.id}/>
       </View>
     </Screen>

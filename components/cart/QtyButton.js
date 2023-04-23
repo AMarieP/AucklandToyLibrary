@@ -1,16 +1,18 @@
-import { StyleSheet, Button, Pressable, View, Text, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import React, { useState, useContext } from 'react'
+import { CartContext } from '../../context/CartContext'
 import { Icon } from '@rneui/themed'
 import colours from '../../colours'
 
-const QtyButton = props => {
-    const itemQuant = props.quantity
-    const[quantity, setQuantity] = useState(itemQuant)
+const QtyButton = ({product}) => {
+  const [updateCart, cartContents, incrementQuant] = useContext(CartContext)
+  const itemQuant = product.quantity
+  const[quantity, setQuantity] = useState(itemQuant)
   return (
     <View style={styles.buttonView}>
-        <TouchableOpacity onPress={() => setQuantity(quantity + 1)}><Icon name='plus-circle' type='font-awesome' color={colours.blue} /></TouchableOpacity>
+        <TouchableOpacity onPress={() => {incrementQuant(product, true), setQuantity(product.quantity)}}><Icon name='plus-circle' type='font-awesome' color={colours.blue} /></TouchableOpacity>
         <Text style={styles.quant} >{quantity}</Text>
-        <TouchableOpacity onPress={() => setQuantity(quantity - 1)}><Icon name='minus-circle' type='font-awesome' color={colours.blue} /></TouchableOpacity>
+        <TouchableOpacity onPress={() => {incrementQuant(product, false), setQuantity(product.quantity)}}><Icon name='minus-circle' type='font-awesome' color={colours.blue} /></TouchableOpacity>
     </View>
   )
 }

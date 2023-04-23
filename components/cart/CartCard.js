@@ -3,17 +3,16 @@ import React, { useState } from 'react'
 import QtyButton from './QtyButton'
 import colours from '../../colours'
 
-const CartCard = ({image, quant, name, ID}) => {
-  const [quantity, setQuantity] = useState(0)
+const CartCard = ({product}) => {
   return (
     <View style={styles.containerMain} >
-      <Image style={styles.prodImage} source={image} resizeMode="cover" accessibilityLabel={name}/>
+      <Image style={styles.prodImage} source={product.image} resizeMode="cover" accessibilityLabel={product.name}/>
       <View style={styles.container}>
         <View style={styles.containerDetails} >
-          <Text style={styles.name} adjustsFontSizeToFit={true}>{name}</Text>
-          <Text style={styles.prodID} >Product ID: {ID}</Text>
+          <Text style={styles.name} adjustsFontSizeToFit={true}>{product.name}</Text>
+          <Text style={styles.prodID} >Product ID: {product.id}</Text>
         </View>
-        <QtyButton style={styles.quantBtn} quantity={quant} />
+        <QtyButton style={styles.quantBtn} product={product} />
       </View>
     </View>
   )

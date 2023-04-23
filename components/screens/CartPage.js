@@ -1,13 +1,25 @@
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native'
+import { useContext, useEffect, useState, useRef } from 'react'
 import { Button } from '@rneui/themed'
 import React from 'react'
 import colours from '../../colours'
 import Screen from '../smallElements/Screen'
 import CartCard from '../cart/CartCard'
-import myData from '../FakeData'
 import SemiCircle from '../smallElements/SemiCircle'
 
+import { CartContext } from '../../context/CartContext'
+
 const CartPage = () => {
+  
+  const [setCart, cartContents, incrementQuant, total] = useContext(CartContext)
+  const [cart, setMyCart] = useState(cartContents)
+  const [myTotal, setMyTotal] = useState(total)
+  
+
+  useEffect(() => {
+    setMyCart(cartContents)    
+    
+  },[myTotal]);
 
   return (
     <Screen>
@@ -15,15 +27,15 @@ const CartPage = () => {
             <SemiCircle colour={colours.darkest} backgroundColour={colours.green}>Cart</SemiCircle>
           </View>
           <SafeAreaView style={[{flex: 4}]}>
-            <FlatList
+          <FlatList
             style={{margin: 2}}
               numColumns={1}
-              data={myData}
-              renderItem={({item}) => <CartCard name={item.name} image={item.image} price={item.price} shortDescription={item.shortDescription} quant={0} />}
+              data={cart}
+              renderItem={({item}) => <CartCard product={item} />}
               keyExtractor={item => item.id}/>
           </SafeAreaView>
           <View style={styles.cartButtons} >
-            <Text style={styles.total} >your total: $</Text>
+            <Text style={styles.total} >your total: ${total}</Text>
             <Button
                   title="place order"
                   raised

@@ -1,30 +1,35 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, ImageBackground } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { ActiveProductContext } from '../../context/ActiveProduct';
 import colours from '../../colours'
 import myData from '../FakeData';
 
 
-const ToyProductCard = ({image, title, price, shortDescription}) => {
-  const navigation = useNavigation();
 
+
+const ToyProductCard = ({product}) => {
+  const navigation = useNavigation();
+  const {currentProduct, setCurrentProduct} = useContext(ActiveProductContext);
+
+  
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('IndividualProduct')}>
+    <TouchableOpacity onPress={() => {navigation.navigate('IndividualProduct'); setCurrentProduct(product)}}>
       <View style={[styles.container, 
     {width: Dimensions.get('window').width * 0.46,
     height: Dimensions.get('window').height * 0.4}]} >
-        <ImageBackground style={styles.image} source={image} resizeMode="cover" accessibilityLabel={title}>        
+        <ImageBackground style={styles.image} source={product.image} resizeMode="cover" accessibilityLabel={product.title}>        
           <View style={styles.header}>
-            <Text style={styles.title} >{title}</Text>
+            <Text style={styles.title} >{product.name}</Text>
             <View style={styles.priceContainer}>
               <Text style={styles.dollar}>$</Text>
-              <Text style={styles.price}>{price}</Text>
+              <Text style={styles.price}>{product.price}</Text>
             </View>
           </View>
         </ImageBackground>
         <View style={styles.description}>
           <Button style={styles.button} color={colours.brick} title='Select'>Select</Button>
-          <Text style={styles.details} >{shortDescription}</Text>
+          <Text style={styles.details} >{product.shortDescription}</Text>
         </View>
       </View>
     </TouchableOpacity>

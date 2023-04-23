@@ -1,23 +1,63 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import AppLoading from 'expo-app-loading';
+
+
+//Page Imports
 import IndividualProduct from './components/screens/IndividualProduct';
-import BackgroundBrickStack from './components/smallElements/BackgroundBrickStack';
 import AllProducts from './components/screens/AllProducts';
 import CartPage from './components/screens/CartPage';
 import Welcome from './components/screens/Welcome';
 import colours from './colours';
+
+//Icons for Nav Bar
 import { Icon } from '@rneui/themed';
+import BackgroundBrickStack from './components/smallElements/BackgroundBrickStack';
+
+//Contexts
+import { ActiveProductContext } from './context/ActiveProduct';
+import { CartContext, CartProvider } from './context/CartContext';
+
+// // Font Imports
+import { useFonts, AnticDidone_400Regular } from '@expo-google-fonts/antic-didone';
+import {
+  Manrope_200ExtraLight,
+  Manrope_300Light,
+  Manrope_400Regular,
+  Manrope_500Medium,
+  Manrope_600SemiBold,
+  Manrope_700Bold,
+  Manrope_800ExtraBold,
+} from '@expo-google-fonts/manrope';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function Root() {
+    //Uses Fonts
+    let [fontsLoaded] = useFonts({
+      AnticDidone_400Regular,
+      Manrope_200ExtraLight,
+      Manrope_300Light,
+      Manrope_400Regular,
+      Manrope_500Medium,
+      Manrope_600SemiBold,
+      Manrope_700Bold,
+      Manrope_800ExtraBold,
+    });
+  
+    if (!fontsLoaded) {
+      return <AppLoading/>;
+    }
+
   return (
     <Tab.Navigator useLegacyImplementation
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          tabBarIcon: ({color }) => {
             if (route.name === 'all') {
               return (
                 <Icon name='shopping-bag' type='FontAwesome5' color={color} />
@@ -57,13 +97,38 @@ function Root() {
 }
 
 function App() {
+
+  const [currentProduct, setCurrentProduct] = useState(ActiveProductContext);
+
+    
+  //Uses Fonts
+  let [fontsLoaded] = useFonts({
+    AnticDidone_400Regular,
+    Manrope_200ExtraLight,
+    Manrope_300Light,
+    Manrope_400Regular,
+    Manrope_500Medium,
+    Manrope_600SemiBold,
+    Manrope_700Bold,
+    Manrope_800ExtraBold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading/>;
+  }
+
   return (
-    <NavigationContainer>
+    <CartProvider>
+    <ActiveProductContext.Provider value={{currentProduct, setCurrentProduct}}>
+      <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Root" component={Root} />
         <Stack.Screen name="IndividualProduct" component={IndividualProduct} />
       </Stack.Navigator>
-    </NavigationContainer>
+      </NavigationContainer>
+    </ActiveProductContext.Provider>
+    </CartProvider>
+
   );
 }
 
