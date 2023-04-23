@@ -19,6 +19,8 @@ const NavigationBar = () => {
 
 export default NavigationBar
 
+
+
 const styles = StyleSheet.create({
   container:{
     backgroundColor: colours.brick,

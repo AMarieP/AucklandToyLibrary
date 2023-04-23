@@ -1,11 +1,15 @@
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity, Dimensions, ImageBackground } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import colours from '../../colours'
+import myData from '../FakeData';
 
 
-const ToyProductCard = ({onPress, image, title, price, shortDescription}) => {
+const ToyProductCard = ({image, title, price, shortDescription}) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={() => navigation.navigate('IndividualProduct')}>
       <View style={[styles.container, 
     {width: Dimensions.get('window').width * 0.46,
     height: Dimensions.get('window').height * 0.4}]} >

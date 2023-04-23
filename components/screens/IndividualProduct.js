@@ -14,21 +14,23 @@ import Accordian from '../smallElements/Accordian';
 const IndividualProduct = ({name, ID, longDescription, shortDescription, image}) => {
 
   return (
-    <View style={{width:'100%', padding: 10, alignItems: 'center'}}>
-      <View style={styles.containerHead}>
-        <SemiCircle colour={colours.brick} backgroundColour={colours.blue}>{name}</SemiCircle>
+    <Screen>
+      <View style={{width:'100%', padding: 10, alignItems: 'center'}}>
+        <View style={styles.containerHead}>
+          <SemiCircle colour={colours.brick} backgroundColour={colours.blue}>{name}</SemiCircle>
+        </View>
+        <View style={styles.productID} >
+          <Text style={styles.prodIDText}>ProductID: {ID}</Text>
+        </View>
+        <Image source={image} style={styles.image} resizeMode="cover" accessibilityLabel={name}/>
+        <View style={styles.containerMiddle} >
+          <MyAppText>{shortDescription}</MyAppText>
+          <Button title='add to cart'/>
+        </View>
+        <Accordian content={longDescription}/>
+        <Button color={colours.brick} title='browse more toys'/>
       </View>
-      <View style={styles.productID} >
-        <Text style={styles.prodIDText}>ProductID: {ID}</Text>
-      </View>
-      <Image source={image} style={styles.image} resizeMode="cover" accessibilityLabel={name}/>
-      <View style={styles.containerMiddle} >
-        <MyAppText>{shortDescription}</MyAppText>
-        <Button title='add to cart'/>
-      </View>
-      <Accordian content={longDescription}/>
-      <Button color={colours.brick} title='browse more toys'/>
-    </View>
+    </Screen>
   )
 }
 

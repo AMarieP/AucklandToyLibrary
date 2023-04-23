@@ -7,6 +7,7 @@ import ToyProductCard from '../product/ToyProductCard'
 import SemiCircle from '../smallElements/SemiCircle'
 import colours from '../../colours'
 import Screen from '../smallElements/Screen'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const AllProducts = () => {

@@ -1,13 +1,18 @@
 import React from "react";
 import Constants from "expo-constants";
 import colours from "../../colours";
-import { StyleSheet, SafeAreaView, View, Dimensions } from "react-native";
+import { StyleSheet, SafeAreaView, View, Dimensions, ScrollView } from "react-native";
 
 function Screen({ children, style }) {
   return (
-    <SafeAreaView style={[styles.screen, {width: Dimensions.get('window').width,}]}>
-      {children}
-    </SafeAreaView>
+    <ScrollView>
+      <ScrollView horizontal={true}>
+        <SafeAreaView style={[styles.screen, {width: Dimensions.get('window').width,}]}>
+          {children}
+        </SafeAreaView>
+        </ScrollView>
+    </ScrollView>
+
   );
 }
 
