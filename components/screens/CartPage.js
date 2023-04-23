@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native'
 import { useContext, useEffect, useState, useRef } from 'react'
-import { Button } from '@rneui/themed'
+import { useNavigation } from '@react-navigation/native';
+import { Button, Dialog } from '@rneui/themed'
 import React from 'react'
 import colours from '../../colours'
 import Screen from '../smallElements/Screen'
@@ -14,6 +15,9 @@ const CartPage = () => {
   const [setCart, cartContents, incrementQuant, total] = useContext(CartContext)
   const [cart, setMyCart] = useState(cartContents)
   const [myTotal, setMyTotal] = useState(total)
+  const navigation = useNavigation();
+  const [isVis, setVis] = useState(false);
+
   
 
   useEffect(() => {
@@ -21,11 +25,22 @@ const CartPage = () => {
     
   },[myTotal]);
 
+  const confirmIs = () => {
+    setVis(!isVis);
+  };
+
   return (
     <Screen>
           <View style={[{flex: 1}]}>
             <SemiCircle colour={colours.darkest} backgroundColour={colours.green}>Cart</SemiCircle>
           </View>
+          <Dialog
+      isVisible={isVis}
+      onBackdropPress={confirmIs}
+    >
+      <Dialog.Title title="Dialog Title"/>
+      <Text>Dialog body text. Add relevant information here.</Text>
+    </Dialog>
           <SafeAreaView style={[{flex: 4}]}>
           <FlatList
             style={{margin: 2}}
@@ -37,6 +52,7 @@ const CartPage = () => {
           <View style={styles.cartButtons} >
             <Text style={styles.total} >your total: ${total}</Text>
             <Button
+                  onPress={() => {confirmIs}}
                   title="place order"
                   raised
                   buttonStyle={{
@@ -50,6 +66,7 @@ const CartPage = () => {
                 />
                 <Button
                   title="browse more"
+                  onPress={() => navigation.navigate('all')}
                   raised
                   buttonStyle={{
                     backgroundColor: colours.purple,

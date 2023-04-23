@@ -1,4 +1,6 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
+
 import React from 'react'
 import colours from '../../colours'
 import Screen from '../smallElements/Screen'
@@ -18,22 +20,26 @@ import MyH1 from '../text/MyH1'
 
 
 
-
-
 const Welcome = () => {
+
+  const navigation = useNavigation();
+
 
   const DATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       title: 'Under $5',
+      range: '5',
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
       title: '$10 and Under',
+      range: '10',
     },
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
       title: '$35 and Under',
+      range: '35',
     },
   ];
 
@@ -56,7 +62,7 @@ const Welcome = () => {
       <View style={styles.shopAllContainer} >
         <Circle colour={colours.blue}>
           <MyH2 colour={colours.brick} >PLAY SUSTAINABLY</MyH2>
-          <Button
+          <Button onPress={() => navigation.navigate('all')}
                   title="shop now"
                   raised
                   buttonStyle={{
@@ -67,6 +73,7 @@ const Welcome = () => {
                     marginVertical: 2
 
                   }}
+                  
                   titleStyle={{ marginHorizontal: 10, color: colours.yellow, fontFamily: 'Manrope_400Regular', fontSize: 20 }}
                 />
         </Circle>
@@ -77,7 +84,7 @@ const Welcome = () => {
         <FlatList
         style={{marginHorizontal: 2}}
           data={DATA}
-          renderItem={({item}) => <TouchableOpacity><MyBrowsingCard>{item.title}</MyBrowsingCard></TouchableOpacity>}
+          renderItem={({item}) => <TouchableOpacity onPress={() => navigation.navigate('all', {theRange: item.range})}><MyBrowsingCard>{item.title}</MyBrowsingCard></TouchableOpacity>}
           keyExtractor={item => item.id}/>
         </View>
       </View>
