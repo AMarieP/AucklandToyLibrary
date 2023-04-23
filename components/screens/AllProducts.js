@@ -1,19 +1,19 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native'
+import { StyleSheet, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native'
 import React from 'react'
 import myData from '../FakeData'
-import MyH1 from '../text/MyH1'
 import MyH2 from '../text/MyH2'
 import ToyProductCard from '../product/ToyProductCard'
 import SemiCircle from '../smallElements/SemiCircle'
 import colours from '../../colours'
 import Screen from '../smallElements/Screen'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const AllProducts = () => {
   return (
     <Screen>
-      <SemiCircle colour={colours.brick} backgroundColour={colours.blue}>shop</SemiCircle>
+      <View style={[{flex: 1}]}>
+        <SemiCircle colour={colours.brick} backgroundColour={colours.blue}>shop</SemiCircle>
+      </View>
       <View style={styles.sortContainer} >
         <MyH2 colour={colours.brick}>sort by:</MyH2>
         <TouchableOpacity style={styles.sortOptions}>
@@ -30,7 +30,7 @@ const AllProducts = () => {
         </TouchableOpacity>
 
       </View>
-      <SafeAreaView>
+      <SafeAreaView style={[{flex: 2}]}>
         <FlatList
         style={{margin: 2}}
           numColumns={2}
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: '2%',
     paddingBottom: '2%',
+    flex: 1,
   },
   sortOptions:{
     paddingLeft: '2%',

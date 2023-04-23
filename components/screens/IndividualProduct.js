@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Image, Button } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import { ListItem } from '@rneui/themed';
 import { Icon } from '@rneui/themed';
 import Footer from '../navigation/Footer';
@@ -12,10 +13,11 @@ import MyAppText from '../text/MyAppText'
 import Accordian from '../smallElements/Accordian';
 
 const IndividualProduct = ({name, ID, longDescription, shortDescription, image}) => {
+  const navigation = useNavigation();
 
   return (
     <Screen>
-      <View style={{width:'100%', padding: 10, alignItems: 'center'}}>
+      <View style={{width:'100%', padding: 10, alignItems: 'center', flex: 3}}>
         <View style={styles.containerHead}>
           <SemiCircle colour={colours.brick} backgroundColour={colours.blue}>{name}</SemiCircle>
         </View>
@@ -28,7 +30,7 @@ const IndividualProduct = ({name, ID, longDescription, shortDescription, image})
           <Button title='add to cart'/>
         </View>
         <Accordian content={longDescription}/>
-        <Button color={colours.brick} title='browse more toys'/>
+        <Button color={colours.brick} title='browse more toys' onPress={() => navigation.navigate('all')} />
       </View>
     </Screen>
   )
